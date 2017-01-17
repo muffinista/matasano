@@ -2,7 +2,6 @@
 mod test {
     extern crate rustc_serialize;
     use rustc_serialize::hex::FromHex;
-
     use rustc_serialize::base64::{ToBase64, STANDARD};
     
     #[test]
