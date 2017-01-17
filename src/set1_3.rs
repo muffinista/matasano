@@ -21,32 +21,8 @@ mod test {
     */
     
 
-    extern crate rustc_serialize;
-    use rustc_serialize::hex::{FromHex};
-
-
     use scores;
-    
-    fn decode(x: &str, c: u8) -> String {
-        //let mut out = String::new();
-
-        let mut out = x.from_hex().unwrap();
-
-        for i in 0..out.len() {
-            out[i] ^= c;
-        }
-
-        let result = String::from_utf8(out);
-
-        if ! result.is_err() {
-            result.unwrap()
-        }
-        else {
-            String::new()
-        }
-    }
-
-    
+    use decode;
     
     
     #[test]
@@ -59,7 +35,7 @@ mod test {
         let mut result: String = String::new();
 
         for char in 0..255 {
-            let foo = decode(src, char);
+            let foo = decode::xor_decode(src, char);
             let val = scores::string_score(&foo);
             
             if val > max {
@@ -69,7 +45,7 @@ mod test {
             //println!("{} {}", val, foo);
         }
 
-        println!("{} {}", max, &result);
+        //println!("{} {}", max, &result);
         assert_eq!(&result, expected);
             
     }

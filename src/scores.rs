@@ -38,12 +38,6 @@ pub fn string_score(s: &str) -> u32 {
     return s.chars().fold(0, |sum, x| sum + char_score(x));
 }
 
-// fn is_hello<T: Into<Vec<u8>>>(s: T) {
-//pub fn string_score(s: String) -> u32 {
-//pub fn string_score<T: &Into<str>>(s: T) -> u32 {    
-//    return s.into().chars().fold(0, |sum, x| sum + char_score(x));
-//}
-
 #[test]
 fn test_string_score() {
     let src = "ETA";
@@ -52,4 +46,4 @@ fn test_string_score() {
     let src2 = "";
     assert_eq!(0, string_score(src2));
 }
-    
+
