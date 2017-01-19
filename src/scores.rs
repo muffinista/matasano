@@ -47,3 +47,37 @@ fn test_string_score() {
     assert_eq!(0, string_score(src2));
 }
 
+/**
+    Write a function to compute the edit distance/Hamming distance between two strings. The Hamming distance is just the number of differing bits. The distance between:
+    this is a test
+    and
+    wokka wokka!!!
+    is 37. Make sure your code agrees before you proceed.
+*/
+pub fn hamming_dist(s1: &str, s2: &str) -> usize {
+    let x = s1.bytes().zip(s2.bytes());
+    let mut distance = 0;
+
+    for (i, j) in x {
+        let diff = i ^ j;
+        if (diff & 0b00000001) > 0 { distance += 1; }
+        if (diff & 0b00000010) > 0 { distance += 1; }
+        if (diff & 0b00000100) > 0 { distance += 1; }
+        if (diff & 0b00001000) > 0 { distance += 1; }
+        if (diff & 0b00010000) > 0 { distance += 1; }
+        if (diff & 0b00100000) > 0 { distance += 1; }
+        if (diff & 0b01000000) > 0 { distance += 1; }
+        if (diff & 0b10000000) > 0 { distance += 1; }
+    }
+
+    distance
+}
+
+
+#[test]
+fn test_hamming_dist() {
+    let s1 = "this is a test";
+    let s2 = "wokka wokka!!!";
+
+    assert_eq!(37, hamming_dist(s1, s2));
+}
