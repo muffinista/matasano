@@ -42,9 +42,70 @@ mod test {
     how" to break it than can actually break it, and a similar
     technique breaks something much more important.
     */
+
+    use rustc_serialize::base64::FromBase64;
+    
+    use std::fs::File;
+    use std::io::prelude::*;
+    use std::io::BufReader;
+    use std::str;
+    use std::io;
+    
+    use scores::*;
+    use decode::guess_xor;
+
+
+    // https://github.com/fotcorn/rust_crypto_challenges/blob/master/src/bin/set1_challenge6.rs#L105
+    fn string_to_blocks(data: &[u8], key_size: usize) -> Vec<Vec<u8>> {
+	      let mut blocks: Vec<Vec<u8>> = vec![Vec::new(); key_size];
+	      for i in 0..data.len() {
+		        blocks[i % key_size].push(data[i]);
+	      }
+	      return blocks;
+    }
+
+    fn load_from_file(src: &str) -> io::Result<Vec<u8>> {
+	      let file = try!(File::open(src));
+	      let reader = BufReader::new(file);
+        
+	      let mut data = String::new();
+        
+	      for line in reader.lines() {
+		        data.push_str(&(line.unwrap()));
+	      }
+        
+	      let decoded_data = data.from_base64().unwrap();
+	      return Ok(decoded_data);
+    }
     
     #[test]
     fn test_c06() {
+        let buffer = match load_from_file("data/6.txt") {
+		        Err(why) => panic!("Failed to read data/set1_challenge4.txt: {}", why),
+		        Ok(data) => data,
+	      };
 
+        let scores  = hamming_dist_for_keysizes(&buffer, 2, 40);       
+
+        let d = &scores[0];
+
+        println!("{} {:?}", d.length, d.dist);
+
+        let blocks = string_to_blocks(&buffer, d.length);
+        
+        let mut key: Vec<u8> = vec!(0; d.length);
+	      for i in 0..blocks.len() {
+		        key[i] = guess_xor(&blocks[i]);
+	      }
+        
+        let mut result: Vec<u8> = Vec::new();
+        for i in 0..buffer.len() {
+            result.push(buffer[i] ^ key[i % d.length]);
+        }
+        
+        let string = String::from_utf8(result).unwrap();
+	      println!("{:?} {:?} {:?}", d.length, d.dist, string);
+
+        assert!(string.contains("I'm back and I'm ringin' the bell"));
     }
 }
