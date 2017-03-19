@@ -19,7 +19,8 @@ mod test {
     use std::fs::File;
     use std::io::{BufReader};
     use std::io::prelude::*;
-    
+    use rustc_serialize::hex::{FromHex};
+
     use scores;
     use decode;
     
@@ -35,12 +36,12 @@ mod test {
 
         for line in f.lines() {
             let src = line.unwrap();
-
+            
             let mut max = 0;
             let mut result: String = String::new();
 
             for char in 0..255 {
-                let foo = decode::xor_decode(&src, char);
+                let foo = decode::xor_decode(&src.from_hex().unwrap(), char);
                 let val = scores::string_score(&foo);
             
                 if val > max {

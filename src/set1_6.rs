@@ -61,7 +61,7 @@ mod test {
 
         let d = &scores[0];
 
-        println!("{} {:?}", d.length, d.dist);
+        //println!("{} {:?}", d.length, d.dist);
 
         let blocks = string_to_blocks(&buffer, d.length);
         
@@ -76,7 +76,6 @@ mod test {
         }
         
         let string = String::from_utf8(result).unwrap();
-	      println!("{:?} {:?} {:?}", d.length, d.dist, string);
 
         assert!(string.contains("I'm back and I'm ringin' the bell"));
     }

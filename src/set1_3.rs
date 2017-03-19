@@ -23,7 +23,7 @@ mod test {
 
     use scores;
     use decode;
-    
+    use rustc_serialize::hex::{FromHex};
     
     #[test]
     fn test_c03() {
@@ -35,14 +35,14 @@ mod test {
         let mut result: String = String::new();
 
         for char in 0..255 {
-            let foo = decode::xor_decode(src, char);
+            let foo = decode::xor_decode(&src.from_hex().unwrap(), char);
             let val = scores::string_score(&foo);
             
             if val > max {
                 max = val;
                 result = foo.to_string();
+                //        println!("{} {}", val, foo);
             }
-            //println!("{} {}", val, foo);
         }
 
         //println!("{} {}", max, &result);
