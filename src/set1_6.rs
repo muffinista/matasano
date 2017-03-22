@@ -52,8 +52,9 @@ mod test {
     
     #[test]
     fn test_c06() {
-        let buffer = match load_from_file("data/6.txt") {
-		        Err(why) => panic!("Failed to read data/set1_challenge4.txt: {}", why),
+        let src = "data/6.txt";
+        let buffer = match load_from_file(src) {
+		        Err(why) => panic!("Failed to read {}: {}", src, why),
 		        Ok(data) => data,
 	      };
 
@@ -63,7 +64,7 @@ mod test {
 
         //println!("{} {:?}", d.length, d.dist);
 
-        let blocks = string_to_blocks(&buffer, d.length);
+        let blocks = transpose_string(&buffer, d.length);
         
         let mut key: Vec<u8> = vec!(0; d.length);
 	      for i in 0..blocks.len() {

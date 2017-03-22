@@ -25,8 +25,9 @@ mod test {
     
     #[test]
     fn test_c07() {
-        let ciphertext = match load_from_file("data/7.txt") {
-		        Err(why) => panic!("Failed to read data/7.txt: {}", why),
+        let src = "data/7.txt";
+        let ciphertext = match load_from_file(src) {
+		        Err(why) => panic!("Failed to read {}: {}", src, why),
 		        Ok(data) => data,
 	      };
 
