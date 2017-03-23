@@ -5,7 +5,7 @@ pub mod scores;
 pub mod decode;
 pub mod encode;
 pub mod strings;
-
+pub mod crypto;
 
 pub mod set1_1;
 pub mod set1_2;
