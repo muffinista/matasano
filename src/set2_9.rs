@@ -25,7 +25,7 @@ mod test {
     use strings::*;
     
     #[test]
-    fn test_c21() {
+    fn test_c9() {
 
         let src = "YELLOW SUBMARINE";
         let expected = "YELLOW SUBMARINE\x04\x04\x04\x04";
