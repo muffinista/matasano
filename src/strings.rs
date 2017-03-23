@@ -105,3 +105,15 @@ fn test_repeat_count() {
         2, 4, 0, 1];
     assert_eq!(2, repeat_count(&data, 4));
 }
+
+
+pub fn pkcs_pad(s: &str, size:usize) -> String {
+	  let mut output:Vec<u8> = s.as_bytes().clone().to_vec();
+
+    let c = (size - (output.len() % size)) as u8;
+
+    while output.len() % size != 0 {
+        output.push(c);
+    }
+    String::from_utf8(output).unwrap()
+}
