@@ -30,7 +30,7 @@ mod test {
 	      };
 
         let key = "YELLOW SUBMARINE";
-        let string = decrypt_ecb_chunk(ciphertext, key);
+        let string = String::from_utf8(decrypt_ecb_chunk(ciphertext, key)).unwrap();
         
         assert!(string.contains("I'm back and I'm ringin' the bell"));
         assert_eq!(string.len(), 2876);
