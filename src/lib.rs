@@ -8,8 +8,10 @@ pub mod encode;
 pub mod strings;
 pub mod crypto;
 pub mod oracle;
+pub mod cookies;
 
 
+/*
 pub mod set1_1;
 pub mod set1_2;
 pub mod set1_3;
@@ -22,4 +24,5 @@ pub mod set1_8;
 pub mod set2_9;
 pub mod set2_10;
 pub mod set2_11;
-pub mod set2_12;
+pub mod set2_12;*/
+pub mod set2_13;
