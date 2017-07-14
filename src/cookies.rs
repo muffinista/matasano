@@ -44,7 +44,6 @@ pub fn hashmap_to_cookie(src: BTreeMap<String, String>) -> String {
 }
 
 
-
 #[test]
 fn test_hashmap_to_cookie() {
     let expected = "baz=boo&boo=bim&foo=bar";

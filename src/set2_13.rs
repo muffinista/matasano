@@ -45,15 +45,27 @@ mod test {
     // generate "valid" ciphertexts) and the ciphertexts themselves,
     // make a role=admin profile.
  
+    use std::collections::BTreeMap;
+    use cookies::*;
     
-    //use rustc_serialize::base64::FromBase64;
-    //use crypto::*;
-    //use oracle::*;
-    //use strings::*;
-    //use std::iter;
+    fn profile_for(email:&str) -> String {
+        // strip & and =
+        let clean_email = email.replace("&", "").replace("=", "");
+
+        let mut data: BTreeMap<String, String> = BTreeMap::new();
+        data.insert("email".to_string(), clean_email.to_string() );
+        data.insert("uid".to_string(), "10".to_string() );
+        data.insert("role".to_string(), "user".to_string() );
+
+        hashmap_to_cookie(data)
+    }
     
     #[test]
-    fn test_c13() {       
+    fn test_c13() {
+        let email = "foo@bar.com";
+        let cookie = profile_for(email);
+        println!("{:?}", cookie);
 
+        assert_eq!("email=foo@bar.com&role=user&uid=10", cookie);
     }
 }
