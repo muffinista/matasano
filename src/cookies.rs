@@ -11,7 +11,7 @@ pub fn cookie_to_hashmap<'a>(s: &'a str, result: &mut BTreeMap<String, String>) 
             _ => panic!("Invalid input"),
         }
     }
-    println!("{:?}", result);
+    //println!("{:?}", result);
 }
 
 
