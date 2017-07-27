@@ -117,3 +117,15 @@ pub fn pkcs_pad(s: &str, size:usize) -> String {
     }
     String::from_utf8(output).unwrap()
 }
+
+
+// borrowed from:
+// https://github.com/Munksgaard/cryptopals/blob/master/chal14/src/main.rs#L84
+pub fn generate_buffer(n: usize) -> Vec<u8> {
+    let mut buf = Vec::new();
+    for _ in 0..n {
+        buf.push(b'A');
+    }
+    
+    buf
+}

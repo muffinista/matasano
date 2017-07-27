@@ -11,6 +11,11 @@ pub fn random_key(size: usize) -> String {
     s
 }
 
+pub fn random_string() -> String {
+    let size = rand::thread_rng().gen_range(20, 60);
+    random_key(size)
+}
+
 #[test]
 fn test_random_key() {
     let len = 16;
