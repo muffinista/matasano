@@ -107,18 +107,6 @@ fn test_repeat_count() {
 }
 
 
-pub fn pkcs_pad(s: &str, size:usize) -> String {
-	  let mut output:Vec<u8> = s.as_bytes().clone().to_vec();
-
-    let c = (size - (output.len() % size)) as u8;
-
-    while output.len() % size != 0 {
-        output.push(c);
-    }
-    String::from_utf8(output).unwrap()
-}
-
-
 // borrowed from:
 // https://github.com/Munksgaard/cryptopals/blob/master/chal14/src/main.rs#L84
 pub fn generate_buffer(n: usize) -> Vec<u8> {

@@ -22,7 +22,7 @@ mod test {
     // ... padded to 20 bytes would be:
     // "YELLOW SUBMARINE\x04\x04\x04\x04"
 
-    use strings::*;
+    use pkcs::*;
     
     #[test]
     fn test_c9() {
