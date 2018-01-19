@@ -27,13 +27,20 @@ mod test {
     
     #[test]
     fn test_c15() {
-        let src = "YELLOW SUBMARINE\x04\x04\x04\x04";
-        let expected = "YELLOW SUBMARINE";
+        let src = "ICE ICE BABY\x04\x04\x04\x04";
+        let expected = "ICE ICE BABY";
 
         let unpadded = pkcs_unpad(src.as_bytes()).unwrap();
         let result = String::from_utf8(unpadded).unwrap();
         
         assert_eq!(expected, result);
+
+
+        let src2 = "ICE ICE BABY\x05\x05\x05\x05";
+        assert!(pkcs_unpad(src2.as_bytes()).is_err());
+        
+        let src3 = "ICE ICE BABY\x01\x02\x03\x04";
+        assert!(pkcs_unpad(src3.as_bytes()).is_err());
     }
 
 }

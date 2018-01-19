@@ -1,4 +1,3 @@
-
 pub fn pkcs_pad(s: &str, size:usize) -> String {
 	  let mut output:Vec<u8> = s.as_bytes().clone().to_vec();
 
@@ -34,18 +33,18 @@ pub fn pkcs_validate(s: &[u8]) -> bool {
     
 }
 
-pub fn pkcs_unpad(s: &[u8]) -> Option<Vec<u8>> {
+pub fn pkcs_unpad(s: &[u8]) -> Result<Vec<u8>, &'static str> {
     if ! pkcs_validate(s) {
-        return None;
+        return Err("boo");
     }
 
     let last:usize = *s.last().unwrap()  as usize;
     let mut output = s.to_vec();
 
     output.truncate(s.len() - last);
-    Some(output)
-       
+    Ok(output)      
 }
+
 
 #[test]
 fn test_valid_pkcs_unpad() {
@@ -61,10 +60,8 @@ fn test_valid_pkcs_unpad() {
 #[test]
 fn test_invalid_pkcs_unpad() {
     let src = "YELLOW SUBMARINE\x04\x04\x04\x05";
-    let expected = None;
-    
     let unpadded = pkcs_unpad(src.as_bytes());
-    assert_eq!(expected, unpadded);
+    assert!(unpadded.is_err());
 }
 
 
