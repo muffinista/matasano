@@ -2,10 +2,16 @@ extern crate rustc_serialize;
 extern crate openssl;
 extern crate rand;
 
+#[macro_use]
+extern crate percent_encoding;
+
 pub mod scores;
 pub mod decode;
 pub mod encode;
+
+#[macro_use]
 pub mod strings;
+
 pub mod crypto;
 pub mod oracle;
 pub mod cookies;
@@ -28,3 +34,4 @@ pub mod set2_12;
 pub mod set2_13;
 pub mod set2_14;
 pub mod set2_15;
+pub mod set2_16;

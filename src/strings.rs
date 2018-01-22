@@ -4,7 +4,21 @@ use std::fs::File;
 use std::io::BufReader;
 use std::str;
 use std::io;
+use std::char;
 
+
+// @see https://github.com/amol9/matasano/blob/master/src/common/ascii.rs
+
+pub fn u8_to_char(input: u8) -> char {
+    match char::from_u32(input as u32) {
+        Some(v) => v,
+        None    => '?'
+    }
+}
+
+macro_rules! chr {
+	  ( $x : expr ) => ( u8_to_char( $x ) );
+}
 
 
 //
