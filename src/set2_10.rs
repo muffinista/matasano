@@ -29,7 +29,7 @@ mod test {
         let key = "YELLOW SUBMARINE";
 
         let src = "data/10.txt";
-        let tmp = match load_from_file(src) {
+        let tmp = match load_base64_from_file(src) {
 		        Err(why) => panic!("Failed to read {}: {}", src, why),
 		        Ok(data) => data,
 	      };

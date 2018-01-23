@@ -24,7 +24,7 @@ mod test {
     #[test]
     fn test_c07() {
         let src = "data/7.txt";
-        let ciphertext = match load_from_file(src) {
+        let ciphertext = match load_base64_from_file(src) {
 		        Err(why) => panic!("Failed to read {}: {}", src, why),
 		        Ok(data) => data,
 	      };

@@ -75,7 +75,7 @@ fn test_byte_vec_compare() {
 ///
 /// load a text file into a vector of bytes
 ///
-pub fn load_from_file(src: &str) -> io::Result<Vec<u8>> {
+pub fn load_base64_from_file(src: &str) -> io::Result<Vec<u8>> {
 	  let file = try!(File::open(src));
 	  let reader = BufReader::new(file);
         

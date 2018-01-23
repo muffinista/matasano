@@ -53,7 +53,7 @@ mod test {
     #[test]
     fn test_c06() {
         let src = "data/6.txt";
-        let buffer = match load_from_file(src) {
+        let buffer = match load_base64_from_file(src) {
 		        Err(why) => panic!("Failed to read {}: {}", src, why),
 		        Ok(data) => data,
 	      };
