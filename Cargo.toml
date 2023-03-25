@@ -5,6 +5,6 @@ authors = ["Colin Mitchell <muffinista@gmail.com>"]
 
 [dependencies]
 rustc-serialize = "0.3"
-openssl = "0.9.9"
+openssl = "0.10.48"
 rand = "0.4"
 percent-encoding = "1.0.0"
